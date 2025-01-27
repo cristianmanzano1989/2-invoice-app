@@ -1,0 +1,42 @@
+<form (ngSubmit)="onSubmit(itemForm)" class="m-3" #itemForm="ngForm">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="product">Nombre Producto</label>
+            <input type="text" class="form-control m-3" id="product" name="product" placeholder="Nombre producto"
+                [(ngModel)]="item.product" required minlength="5" #product="ngModel" />
+            @if (product.invalid && (product.dirty || product.touched)) {
+            @if(product.errors!['requiredd']) {
+            <div class="text-danger m-3">Nombre del producto es requerido!</div>
+            } @if (product.errors!['minlength']) {
+            <div class="text-danger m-3">
+                Nombre del producto debe tener al menos 5 caracteres!
+            </div>
+            } }
+        </div>
+        <div class="form-group col-md-6">
+            <label for="price">Precio</label>
+            <input type="number" class="form-control m-3" id="price" name="price" placeholder="Precio"
+                [(ngModel)]="item.price" required min="10" #price="ngModel" />
+            @if (price.invalid && (price.dirty || price.touched)) {
+            @if(price.errors!['requiredd']) {
+            <div class="text-danger m-3">EL precio es requerido!</div>
+            } @if (price.errors!['min']) {
+            <div class="text-danger m-3">EL precio debe ser mayor o igual a 10!</div>
+            } }
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="quantity">Cantidad</label>
+        <input type="number" class="form-control m-3" id="quantity" name="quantity" placeholder="Cantidad"
+            [(ngModel)]="item.quantity" required min="1" #quantity="ngModel" />
+        @if (quantity.invalid && (quantity.dirty || quantity.touched)) {
+        @if(quantity.errors!['requiredd']) {
+        <div class="text-danger m-3">La cantidad es requerida!</div>
+        } @if (quantity.errors!['min']) {
+        <div class="text-danger m-3">La cantidad debe ser mayor o igual a 1!</div>
+        } }
+    </div>
+    <button [disabled]="itemForm.invalid" type="submit" class="btn btn-primary m-3">
+        Agregar Item
+    </button>
+</form>

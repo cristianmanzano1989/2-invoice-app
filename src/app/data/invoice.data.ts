@@ -35,4 +35,5 @@ export const invoiceData = {
       quantity: 3,
     },
   ],
+  total: 0,
 };
